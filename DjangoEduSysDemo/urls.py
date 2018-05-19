@@ -13,10 +13,15 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.views.static import serve
+
 import xadmin
 from django.urls import path, include, re_path
 from django.views.generic import TemplateView
+
+from settings import MEDIA_ROOT
 from users.views import LoginView, RegisterView, ActiveUserView, ResetView, ModifyPwdView, ForgetPwdView
+from organization.views import OrgView
 
 urlpatterns = [
     path('xadmin/', xadmin.site.urls),
@@ -28,6 +33,8 @@ urlpatterns = [
     path('forget/', ForgetPwdView.as_view(), name='forget_pwd'),
     re_path('reset/(?P<active_code>.*)/', ResetView.as_view(), name='reset_pwd'),
     path('modify_pwd/', ModifyPwdView.as_view(), name='modify_pwd'),
-
+    path('org_list/', OrgView.as_view(), name='org_list'),
+    # 处理图片显示的url,使用Django自带serve,传入参数告诉它去哪个路径找，我们有配置好的路径MEDIAROOT
+    re_path(r'^media/(?P<path>.*)', serve, {"document_root": MEDIA_ROOT})
 
 ]

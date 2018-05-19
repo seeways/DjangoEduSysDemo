@@ -71,6 +71,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                # 添加图片处理器，为了在课程列表中前面加上MEDIA_URL
+                'django.template.context_processors.media',
             ],
         },
     },
@@ -134,6 +136,10 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
 
+# 设置上传文件的路径
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # 指定根目录
+
 # 邮箱登录
 AUTHENTICATION_BACKENDS = (
     'users.views.CustomBackend',
@@ -141,9 +147,8 @@ AUTHENTICATION_BACKENDS = (
 
 # 邮件设置
 EMAIL_HOST = "smtp.qq.com"  # SMTP服务器主机
-EMAIL_PORT = 25             # 端口
-EMAIL_HOST_USER = "1876665310@qq.com"       # 邮箱地址
-EMAIL_HOST_PASSWORD = "mddxdofxuwdgbegg"    # 密码
-EMAIL_USE_TLS= True
-EMAIL_FROM = "1876665310@qq.com"            # 邮箱地址
-
+EMAIL_PORT = 25  # 端口
+EMAIL_HOST_USER = "1876665310@qq.com"  # 邮箱地址
+EMAIL_HOST_PASSWORD = "mddxdofxuwdgbegg"  # 密码
+EMAIL_USE_TLS = True
+EMAIL_FROM = "1876665310@qq.com"  # 邮箱地址
