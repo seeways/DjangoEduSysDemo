@@ -1,4 +1,14 @@
 .idea/
 venv/
-
 logs/
+migrations/
+DjangoEduSysDemo/__pycache__/
+apps/course/__pycache__/
+apps/operation/__pycache__/
+apps/organization/__pycache__/
+apps/users/__pycache__/
+apps/utils/__pycache__/
+extra_apps/xadmin/__pycache__/
+extra_apps/xadmin/plugins/__pycache__/
+extra_apps/xadmin/templatetags/__pycache__/
+extra_apps/xadmin/views/__pycache__/
