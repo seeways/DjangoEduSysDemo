@@ -38,13 +38,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    "users",
-    "course",
-    "organization",
-    "operation",
-    'xadmin',
-    'crispy_forms',
-    'captcha',
+    "users",  # 用户
+    "course",  # 课程
+    "organization",  # 机构
+    "operation",  # 操作
+    'xadmin',  # 后台管理
+    'crispy_forms',  # xadmin辅助
+    'captcha',  # 验证码
+    'pure_pagination',  # 分页
 ]
 
 MIDDLEWARE = [
@@ -152,3 +153,11 @@ EMAIL_HOST_USER = "1876665310@qq.com"  # 邮箱地址
 EMAIL_HOST_PASSWORD = "mddxdofxuwdgbegg"  # 密码
 EMAIL_USE_TLS = True
 EMAIL_FROM = "1876665310@qq.com"  # 邮箱地址
+
+
+PAGINATION_SETTINGS = {
+    'PAGE_RANGE_DISPLAYED': 10,
+    'MARGIN_PAGES_DISPLAYED': 2,
+
+    'SHOW_FIRST_PAGE_WHEN_INVALID': True,
+}

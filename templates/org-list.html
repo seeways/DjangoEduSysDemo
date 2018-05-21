@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load staticfiles %}
+{% load i18n %}
 
 {% block title %}
     课程机构
@@ -61,7 +62,7 @@
                             </ul>
                         </div>
 
-                        {% for org in all_orgs %}
+                        {% for org in all_orgs.object_list %}
                             <dl class="des difdes">
                                 <dt>
                                     <a href="org-detail-homepage.html">
@@ -105,75 +106,78 @@
                     </div>
                     <div class="pageturn">
                         <ul class="pagelist">
+                            {% if all_orgs.has_previous %}
+                                <li class="long"><a href="?{{ all_orgs.previous_page_number.querystring }}">上一页</a></li>
+                            {% endif %}
 
-
-                            <li class="active"><a href="?page=1">1</a></li>
-
-
-                            <li><a href="?page=2" class="page">2</a></li>
-
-
-                            <li><a href="?page=3" class="page">3</a></li>
-
-
-                            <li class="long"><a href="?page=2">下一页</a></li>
-
-
+                            {% for page in all_orgs.pages %}
+                                {% if page %}
+                                    {% ifequal page all_orgs.number %}
+                                        <li class="active"><a href="?{{ page.querystring }}">{{ page }}</a></li>
+                                    {% else %}
+                                        <li><a href="?{{ page.querystring }}" class="page">{{ page }}</a></li>
+                                    {% endifequal %}
+                                {% else %}
+                                    <li class="none"><a href="">...</a></li>
+                                {% endif %}
+                            {% endfor %}
+                            {% if all_orgs.has_next %}
+                                <li class="long"><a href="?{{ all_orgs.next_page_number.querystring }}">下一页</a></li>
+                            {% endif %}
                         </ul>
                     </div>
                 </div>
+                <div class="right companyright">
+                    <div class="head">我要学习</div>
+                    <form class="rightform" id="jsStayForm">
+                        <div>
+                            <img src="{% static "images/rightform1.png" %}"/>
+                            <input type="text" name="name" id="companyName" placeholder="名字" maxlength="25"/>
+                        </div>
+                        <div>
+                            <img src="{% static "images/rightform2.png" %}"/>
+                            <input type="text" name="mobile" id="companyMobile" placeholder="联系电话"/>
+                        </div>
+                        <div>
+                            <img src="{% static "images/rightform3.png" %}"/>
+                            <input type="text" name="course_name" id="companyAddress" placeholder="课程名" maxlength="50"/>
+                        </div>
+                        <p class="error company-tips" id="jsCompanyTips"></p>
+                        <input class="btn" type="text" id="jsStayBtn" value="立即咨询 >"/>
+                        <input type='hidden' name='csrfmiddlewaretoken' value='5I2SlleZJOMUX9QbwYLUIAOshdrdpRcy'/>
+                    </form>
+                </div>
+
+                <div class="right companyrank layout">
+                    <div class="head">授课机构排名</div>
+
+
+                    <dl class="des">
+                        <dt class="num fl">1</dt>
+                        <dd>
+                            <a href="/company/2/"><h1>慕课网</h1></a>
+                            <p>北京市</p>
+                        </dd>
+                    </dl>
+
+                    <dl class="des">
+                        <dt class="num fl">2</dt>
+                        <dd>
+                            <a href="/company/2/"><h1>慕课网2</h1></a>
+                            <p>深圳市</p>
+                        </dd>
+                    </dl>
+
+                    <dl class="des">
+                        <dt class="num fl">3</dt>
+                        <dd>
+                            <a href="/company/2/"><h1>北京大学</h1></a>
+                            <p>北京市</p>
+                        </dd>
+                    </dl>
+
+
+                </div>
             </div>
-            <div class="right companyright">
-                <div class="head">我要学习</div>
-                <form class="rightform" id="jsStayForm">
-                    <div>
-                        <img src="{% static "images/rightform1.png" %}"/>
-                        <input type="text" name="name" id="companyName" placeholder="名字" maxlength="25"/>
-                    </div>
-                    <div>
-                        <img src="{% static "images/rightform2.png" %}"/>
-                        <input type="text" name="mobile" id="companyMobile" placeholder="联系电话"/>
-                    </div>
-                    <div>
-                        <img src="{% static "images/rightform3.png" %}"/>
-                        <input type="text" name="course_name" id="companyAddress" placeholder="课程名" maxlength="50"/>
-                    </div>
-                    <p class="error company-tips" id="jsCompanyTips"></p>
-                    <input class="btn" type="text" id="jsStayBtn" value="立即咨询 >"/>
-                    <input type='hidden' name='csrfmiddlewaretoken' value='5I2SlleZJOMUX9QbwYLUIAOshdrdpRcy'/>
-                </form>
-            </div>
-
-            <div class="right companyrank layout">
-                <div class="head">授课机构排名</div>
-
-
-                <dl class="des">
-                    <dt class="num fl">1</dt>
-                    <dd>
-                        <a href="/company/2/"><h1>慕课网</h1></a>
-                        <p>北京市</p>
-                    </dd>
-                </dl>
-
-                <dl class="des">
-                    <dt class="num fl">2</dt>
-                    <dd>
-                        <a href="/company/2/"><h1>慕课网2</h1></a>
-                        <p>深圳市</p>
-                    </dd>
-                </dl>
-
-                <dl class="des">
-                    <dt class="num fl">3</dt>
-                    <dd>
-                        <a href="/company/2/"><h1>北京大学</h1></a>
-                        <p>北京市</p>
-                    </dd>
-                </dl>
-
-
-            </div>
-        </div>
     </section>
 {% endblock %}
