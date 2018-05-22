@@ -31,6 +31,9 @@ class CourseOrg(models.Model):
     city = models.ForeignKey(CityDict, verbose_name='所在城市', on_delete=models.CASCADE)
     add_time = models.DateTimeField(default=datetime.now)
 
+    students = models.IntegerField("学习人数", default=0)
+    course_nums = models.IntegerField("课程数", default=0)
+
     class Meta:
         verbose_name = '课程机构'
         verbose_name_plural = verbose_name
