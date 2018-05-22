@@ -70,7 +70,7 @@
                         {% for org in all_orgs.object_list %}
                             <dl class="des difdes">
                                 <dt>
-                                    <a href="org-detail-homepage.html">
+                                    <a href="{% url "org:org_home" org.id %}">
                                         <!-- 数据库中的图片地址是相对路径，需要补全 -->
                                         <img width="200" height="120" class="scrollLoading"
                                              data-url="{{ MEDIA_URL }}{{ org.image }}"/>
@@ -80,7 +80,7 @@
                                     <div class="clearfix">
                                         {#                                    {% url "org-detail-homepage" %}#}
                                         <a href="">
-                                            <h1>慕课网</h1>
+                                            <h1>{{ org.name }}</h1>
                                             <div class="pic fl">
 
                                                 <img src="{% static "images/authentication.png" %}"/>

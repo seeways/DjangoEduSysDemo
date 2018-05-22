@@ -1,7 +1,6 @@
 .idea/
 venv/
 logs/
-migrations/
 DjangoEduSysDemo/__pycache__/
 apps/course/__pycache__/
 apps/operation/__pycache__/
@@ -12,3 +11,17 @@ extra_apps/xadmin/__pycache__/
 extra_apps/xadmin/plugins/__pycache__/
 extra_apps/xadmin/templatetags/__pycache__/
 extra_apps/xadmin/views/__pycache__/
+apps/course/migrations/0001_initial.py
+apps/course/migrations/__pycache__/
+apps/operation/migrations/0001_initial.py
+apps/operation/migrations/__pycache__/
+apps/organization/migrations/0001_initial.py
+apps/organization/migrations/0002_courseorg_category.py
+apps/organization/migrations/0003_auto_20180521_1117.py
+apps/organization/migrations/__pycache__/
+apps/users/migrations/0001_initial.py
+apps/users/migrations/__pycache__/
+extra_apps/xadmin/migrations/0001_initial.py
+extra_apps/xadmin/migrations/__pycache__/
+apps/course/migrations/0002_course_course_org.py
+apps/organization/migrations/0004_teacher_image.py
