@@ -19,7 +19,7 @@
                 {% for teacher in all_teacher %}
                     <dl class="des users">
                         <dt>
-                            <a href="">
+                            <a href="{% url "org:teacher_detail" teacher.id %}">
                                 <img width="100" height="100" class="scrollLoading"
                                      data-url="{{ MEDIA_URL }}{{ teacher.image }}"
                                      src="{{ MEDIA_URL }}{{ teacher.image }}"/>
@@ -27,7 +27,7 @@
                         </dt>
                         <dd>
                             <h1>
-                                <a href="">
+                                <a href="{% url "org:teacher_detail" teacher.id %}">
                                     {{ teacher.name }}<span class="key">已认证</span>
                                 </a>
                             </h1>

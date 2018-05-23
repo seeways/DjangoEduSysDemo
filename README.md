@@ -8,7 +8,7 @@
 
 ### 环境
 - Python 3.6
-- Django 1.11
+- Django 2.0
 - MySQL 5.7
 - 安装环境 `pip install -r requirements.txt`
 
@@ -30,13 +30,6 @@ yum install gcc mariadb-devel
 pip install mysqlclient
 ```
 
-### 数据库
-除了依赖和settings之外，还没有建数据库和表
+### 联系方式
 
-所以，运行migrate命令，创建数据库和数据表吧
-
-```python
-python manage.py makemigrations
-
-python manage.py migrate
-```
+qq：1876665310

@@ -25,3 +25,5 @@ extra_apps/xadmin/migrations/0001_initial.py
 extra_apps/xadmin/migrations/__pycache__/
 apps/course/migrations/0002_course_course_org.py
 apps/organization/migrations/0004_teacher_image.py
+apps/course/migrations/0003_course_category.py
+apps/course/migrations/0004_course_tag.py
