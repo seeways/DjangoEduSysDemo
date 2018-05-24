@@ -12,7 +12,7 @@
             <div class="crumbs">
                 <ul>
                     <li><a href="{% url "index" %}">首页</a>></li>
-                    <li><a href="{% url "course:course_list" %}">公开课程</a></li>
+                    <li><a href="{% url "course:course_list" %}">公开课程</a>></li>
                     <li>课程详情</li>
                 </ul>
             </div>
@@ -62,9 +62,13 @@
                             </ul>
                             <div class="btns">
                                 <div class="btn colectgroupbtn" id="jsLeftBtn">
-                                    收藏
+                                    {% if has_fav_course %}已收藏{% else %}收藏{% endif %}
                                 </div>
-                                <div class="buy btn"><a style="color: white" href="course-video.html">开始学习</a></div>
+                                <div class="buy btn">
+                                    <a style="color: white" href="{% url "course:course_info" course.id %}">
+                                        开始学习
+                                    </a>
+                                </div>
                             </div>
                         </div>
                         <div class="group-share-box">
@@ -130,7 +134,9 @@
                         </ul>
                     </div>
                     <div class="tab_cont tab_cont1">
-                        {{ course.detail }}
+                        {% autoescape off %}
+                            {{ course.detail }}
+                        {% endautoescape %}
                     </div>
                     <div class="tab_cont tab_cont2">
                         <div class="comment">

@@ -27,3 +27,11 @@ apps/course/migrations/0002_course_course_org.py
 apps/organization/migrations/0004_teacher_image.py
 apps/course/migrations/0003_course_category.py
 apps/course/migrations/0004_course_tag.py
+apps/course/migrations/0005_video_url.py
+apps/course/migrations/0006_video_learn_times.py
+apps/course/migrations/0007_auto_20180524_1629.py
+media/course/
+media/courses/2018/05/web_HpGaHGf.jpg
+media/courses/2018/05/web_X1UvWft.jpg
+media/image/
+media/teacher/2018/05/image_VHtPaDP.png
