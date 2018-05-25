@@ -1,3 +1,4 @@
+from django.db.models import Q
 from django.http import HttpResponse
 from django.shortcuts import render
 
@@ -6,7 +7,7 @@ from django.shortcuts import render
 from django.views.generic import View
 from pure_pagination import Paginator, PageNotAnInteger
 
-from mixin_utils import LoginRequiredMixin
+from utils.mixin_utils import LoginRequiredMixin
 from operation.models import UserFavorite, CourseComments, UserCourse
 
 from .models import Course, CourseResource, Video
@@ -19,6 +20,14 @@ class CourseListView(View):
         all_courses = Course.objects.all().order_by("-add_time")
         # 热门课程推荐
         hot_courses = Course.objects.all().order_by('-click_nums')[:3]
+        # 搜索功能
+        search_keywords = request.GET.get('keywords', '')
+        if search_keywords:
+            # icontains是包含的意思（不区分大小写）
+            # Q可以实现多个字段，之间是or的关系
+            all_courses = all_courses.filter(
+                Q(name__icontains=search_keywords) | Q(desc__icontains=search_keywords) | Q(
+                    detail__icontains=search_keywords))
         # 排序
         # 默认按时间排序，最新
         sort = request.GET.get('sort', "")
@@ -34,7 +43,7 @@ class CourseListView(View):
             page = request.GET.get('page', 1)
         except PageNotAnInteger:
             page = 1
-        p = Paginator(all_courses, 2, request=request)
+        p = Paginator(all_courses, 5, request=request)
         courses = p.page(page)
         return render(request, "course-list.html", {
             # 课程分页

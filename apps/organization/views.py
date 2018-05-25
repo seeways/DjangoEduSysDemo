@@ -1,3 +1,4 @@
+from django.db.models import Q
 from pure_pagination import Paginator, PageNotAnInteger
 from django.shortcuts import render
 from django.views.generic.base import View
@@ -22,6 +23,13 @@ class OrgView(View):
 
         # 所有城市
         all_citys = CityDict.objects.all()
+
+        # 机构搜索功能
+        search_keywords = request.GET.get('keywords', '')
+        if search_keywords:
+            # 在name字段进行操作,做like语句的操作。i代表不区分大小写
+            # or操作使用Q
+            all_orgs = all_orgs.filter(Q(name__icontains=search_keywords) | Q(desc__icontains=search_keywords))
 
         # 城市id过滤
         city_id = request.GET.get('city', '')
@@ -220,21 +228,23 @@ class TeacherListView(View):
             # 在name字段进行操作,做like语句的操作。i代表不区分大小写
             # or操作使用Q
             all_teachers = all_teachers.filter(name__icontains=search_keywords)
+
         # 人气排序
-        sort = request.GET.get('sort', '')
-        if sort:
-            if sort == 'hot':
-                all_teachers = all_teachers.order_by('-click_nums')
+        sort = request.GET.get("sort", "")
+        if sort == "hot":
+            all_teachers = all_teachers.order_by('-click_nums')
 
         # 讲师排行榜
-        sorted_teacher = Teacher.objects.all().order_by('-click_nums')[:3]
+        sorted_teacher = Teacher.objects.all().order_by("-click_nums")[:3]
+
         # 进行分页
         try:
             page = request.GET.get('page', 1)
         except PageNotAnInteger:
             page = 1
-        p = Paginator(all_teachers, 1, request=request)
+        p = Paginator(all_teachers, 5, request=request)
         teachers = p.page(page)
+
         return render(request, "teachers-list.html", {
             "all_teachers": teachers,
             "teacher_nums": teacher_nums,
