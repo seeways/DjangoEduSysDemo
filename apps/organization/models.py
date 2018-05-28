@@ -57,6 +57,7 @@ class Teacher(models.Model):
     fav_nums = models.IntegerField('收藏数', default=0)
     add_time = models.DateTimeField(default=datetime.now)
     teacher_age = models.IntegerField('年龄', default=25, blank=True)
+
     image = models.ImageField(
         default='',
         upload_to="teacher/%Y/%m",
@@ -69,6 +70,9 @@ class Teacher(models.Model):
     class Meta:
         verbose_name = '教师'
         verbose_name_plural = verbose_name
+
+    def get_course_nums(self):
+        return self.course_set.all().count()
 
     def __str__(self):
         return "[{0}]的教师: {1}".format(self.org, self.name)

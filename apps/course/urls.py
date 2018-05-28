@@ -19,6 +19,6 @@ urlpatterns = [
     # 添加评论
     path('add_comment/', AddCommentsView.as_view(), name="add_comment"),
     # 课程视频播放页
-    path('video/(?P<video_id>\d+)/', VideoPlayView.as_view(), name="video_play"),
+    re_path('video/(?P<video_id>\d+)/', VideoPlayView.as_view(), name="video_play"),
 
 ]

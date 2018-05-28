@@ -32,3 +32,9 @@ apps/course/migrations/0006_video_learn_times.py
 apps/course/migrations/0007_auto_20180524_1629.py
 apps/organization/migrations/0005_teacher_teacher_age.py
 apps/organization/migrations/0006_auto_20180525_1639.py
+apps/users/migrations/0002_auto_20180528_1647.py
+media/course/
+media/courses/
+media/image/
+media/teacher/
+media/org/
