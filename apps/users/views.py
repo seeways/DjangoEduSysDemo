@@ -4,6 +4,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.backends import ModelBackend
+from django.urls import reverse
 from pure_pagination import Paginator, PageNotAnInteger
 
 from utils.mixin_utils import LoginRequiredMixin
@@ -12,13 +13,33 @@ from django.views.generic.base import View
 from .forms import LoginForm, RegisterForm, ModifyPwdForm, ForgetPwdForm, UploadImageForm, UserInfoForm
 from django.contrib.auth.hashers import make_password
 from utils.email_send import send_register_email
-
+from django.shortcuts import render_to_response
 from course.models import CourseOrg, Teacher, Course
 from operation.models import UserCourse, UserFavorite, UserMessage
-from .models import UserProfile, EmailVerifyRecord
+from .models import UserProfile, EmailVerifyRecord, Banner
 
 
 # Create your views here.
+
+
+class IndexView(View):
+    """首页"""
+
+    def get(self, request):
+        # 轮播图
+        all_banners = Banner.objects.all().order_by('index')
+        # 课程
+        courses = Course.objects.filter(is_banner=False)[:6]
+        # 轮播课程
+        banner_courses = Course.objects.filter(is_banner=True)[:3]
+        # 课程机构
+        course_orgs = Course.objects.all()[:15]
+        return render(request, 'index.html', {
+            'all_banners': all_banners,
+            'courses': courses,
+            'banner_courses': banner_courses,
+            'course_orgs': course_orgs,
+        })
 
 
 # 邮箱和用户名都可以登录
@@ -57,7 +78,7 @@ class LoginView(View):
                 if user.is_active:
                     # 只有注册激活才能登录
                     login(request, user)
-                    return render(request, 'index.html')
+                    return HttpResponseRedirect(reverse('index'))
                 return render(request, 'login.html', {'msg': '未激活', 'login_form': login_form})
             # 只有当用户名或密码不存在时，才返回错误信息到前端
             else:
@@ -231,7 +252,6 @@ class LogoutView(View):
 
     def get(self, request):
         logout(request)
-        from django.urls import reverse
         return HttpResponseRedirect(reverse('index'))
 
 
@@ -342,3 +362,18 @@ class MyMessageView(LoginRequiredMixin, View):
         return render(request, "usercenter-message.html", {
             "messages": messages,
         })
+
+
+def pag_not_found(request):
+    # 全局404处理函数
+    response = render_to_response('404.html', {})
+    response.status_code = 404
+    return response
+
+
+def page_error(request):
+    # 全局500处理函数
+    from django.shortcuts import render_to_response
+    response = render_to_response('500.html', {})
+    response.status_code = 500
+    return response

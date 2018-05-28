@@ -28,6 +28,7 @@ class Course(models.Model):
     # teacher外键
     teacher = models.ForeignKey(Teacher, verbose_name='讲师', null=True, blank=True, on_delete=models.CASCADE)
 
+    is_banner = models.BooleanField('是否轮播', default=False)
     # 后台添加字段
     need_know = models.CharField('课程须知', max_length=300, default='')
     teacher_tell = models.CharField('老师告诉你', max_length=300, default='')

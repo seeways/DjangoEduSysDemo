@@ -22,6 +22,7 @@ class CourseOrg(models.Model):
         ("gr", u"个人"),
     )
     name = models.CharField('机构名称', max_length=50)
+    tag = models.CharField('机构标签', max_length=10, default='全国知名')
     desc = models.TextField('机构描述')
     category = models.CharField(max_length=50, choices=ORG_CHOICES, verbose_name=u"机构类别", default="pxjg")
     click_nums = models.IntegerField('点击数', default=0)
