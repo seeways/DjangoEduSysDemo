@@ -14,16 +14,9 @@
                     <ul class="imgs">
                         {% for banner in all_banners %}
                             <li>
-                                {% if all_banners %}
-                                    <a href="http://www.jiataoyuan.com">
-                                        <img width="1200" height="478"
-                                             src="{% static "media/banner/2016/11/57a801860001c34b12000460.jpg" %}"/>
-                                    </a>
-                                {% else %}
-                                    <a href="{{ banner.url }}">
-                                        <img width="1200" height="478" src="{{ MEDIA_URL }}{{ banner.image }}"/>
-                                    </a>
-                                {% endif %}
+                                <a href="{{ banner.url }}">
+                                    <img width="1200" height="478" src="{{ MEDIA_URL }}{{ banner.image }}"/>
+                                </a>
                             </li>
                         {% endfor %}
 

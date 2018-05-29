@@ -38,3 +38,5 @@ media/courses/
 media/image/
 media/teacher/
 media/org/
+apps/course/migrations/0008_course_is_banner.py
+apps/organization/migrations/0007_courseorg_tag.py
