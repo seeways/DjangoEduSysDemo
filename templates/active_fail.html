@@ -1,10 +1,17 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <!-- 安全验证 -->
+    <script src="{% static "csrf.js" %}"></script>
+    <!-- 加载icon -->
+    <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="icon" href="{% static "img/icon.png" %}" type="image/x-icon"/>
+    <link rel="shortcut icon" href="{% static "img/icon.png" %}" type="image/x-icon"/>
 </head>
 <body>
-    <p style="color: red;">链接失效</p>
+<p style="color: red;">链接失效</p>
 </body>
 </html>

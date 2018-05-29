@@ -9,7 +9,12 @@
     <title>慕学在线注册</title>
     <link rel="stylesheet" type="text/css" href="{% static 'css/reset.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
-
+    <!-- 安全验证 -->
+    <script src="{% static "csrf.js" %}"></script>
+    <!-- 加载icon -->
+    <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="icon" href="{% static "img/icon.png" %}" type="image/x-icon"/>
+    <link rel="shortcut icon" href="{% static "img/icon.png" %}" type="image/x-icon"/>
 </head>
 <body>
 <div class="loginbox dialogbox">

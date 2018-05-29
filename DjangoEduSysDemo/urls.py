@@ -22,11 +22,12 @@ from django.views.generic import TemplateView
 
 from DjangoEduSysDemo.settings import MEDIA_ROOT
 from DjangoEduSysDemo.settings import STATICFILES_DIRS
-from users.views import LoginView, RegisterView, ActiveUserView, ResetView, ModifyPwdView, ForgetPwdView, LogoutView
+from users.views import LoginView, RegisterView, ActiveUserView, ResetView, ModifyPwdView, ForgetPwdView, LogoutView, IndexView
 
 urlpatterns = [
     path('xadmin/', xadmin.site.urls),
-    path('', TemplateView.as_view(template_name='index.html'), name='index'),
+    # path('', TemplateView.as_view(template_name='index.html'), name='index'),
+    path('', IndexView.as_view(), name='index'),
     path('login/', LoginView.as_view(), name='login'),
     path('register/', RegisterView.as_view(), name='register'),
     path('logout/', LogoutView.as_view(), name="logout"),
@@ -43,7 +44,7 @@ urlpatterns = [
 
     # 处理图片显示的url,使用Django自带serve,传入参数告诉它去哪个路径找，我们有配置好的路径MEDIAROOT
     re_path(r'^media/(?P<path>.*)', serve, {"document_root": MEDIA_ROOT}),
-    # # 静态文件
-    # re_path(r'^static/(?P<path>.*)', serve, {"document_root": STATICFILES_DIRS}),
+    # 静态文件
+    re_path(r'^static/(?P<path>.*)', serve, {"document_root": STATICFILES_DIRS[0]}),
 
 ]

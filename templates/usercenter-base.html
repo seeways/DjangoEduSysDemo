@@ -23,7 +23,12 @@
 
     <script src="{% static 'js/jquery.min.js' %}" type="text/javascript"></script>
     <script src="{% static 'js/jquery-migrate-1.2.1.min.js' %}" type="text/javascript"></script>
-
+    <!-- 安全验证 -->
+    <script src="{% static "csrf.js" %}"></script>
+    <!-- 加载icon -->
+    <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="icon" href="{% static "img/icon.png" %}" type="image/x-icon"/>
+    <link rel="shortcut icon" href="{% static "img/icon.png" %}" type="image/x-icon"/>
 </head>
 <body>
 <section class="headerwrap headerwrap2">
