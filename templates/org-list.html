@@ -92,7 +92,7 @@
                                 <dd>
                                     <div class="clearfix">
                                         {#                                    {% url "org-detail-homepage" %}#}
-                                        <a href="">
+                                        <a href="{% url "org:org_home" org.id %}">
                                             <h1>{{ org.name }}</h1>
                                             <div class="pic fl">
 
@@ -105,13 +105,13 @@
                                     </div>
                                     <ul class="cont">
                                         <li class="first"><p class="pic9">课程数：<span>1</span></p>
-                                            <p class="c7">学习人数：<span>1000</span></p></li>
-                                        <li class="c8" style="padding-left:18px;">北京市海淀区中关村北大街</li>
+                                            <p class="c7">学习人数：<span>{{ org.students }}</span></p></li>
+                                        <li class="c8" style="padding-left:18px;">{{ org.address }}</li>
                                         <li class="pic10" style="padding-left:18px;">经典课程：
+                                            {% for course in org.get_course %}
+                                                <a href="{% url "course:course_info" course.id %}">{{ course.name }}</a>
+                                            {% endfor %}
 
-                                            <a href="/diary/19/">c语言基础入门</a>
-
-                                            <a href="/diary/16/">数据库基础</a>
 
                                         </li>
                                     </ul>
@@ -145,39 +145,42 @@
                         </ul>
                     </div>
                 </div>
-                <div class="right companyright">
-                    <div class="head">我要学习</div>
-                    <form class="rightform" id="jsStayForm">
-                        <div>
-                            <img src="{% static 'images/rightform1.png' %}"/>
-                            <input type="text" name="name" id="companyName" placeholder="名字" maxlength="25"/>
-                        </div>
-                        <div>
-                            <img src="{% static 'images/rightform2.png' %}"/>
-                            <input type="text" name="mobile" id="companyMobile" placeholder="联系电话"/>
-                        </div>
-                        <div>
-                            <img src="{% static 'images/rightform3.png' %}"/>
-                            <input type="text" name="course_name" id="companyAddress" placeholder="课程名" maxlength="50"/>
-                        </div>
-                        <p class="error company-tips" id="jsCompanyTips"></p>
-                        <input class="btn" type="text" id="jsStayBtn" value="立即咨询 >"/>
-                        {% csrf_token %}
-                    </form>
-                </div>
 
-                <div class="right companyrank layout">
-                    <div class="head">授课机构排名</div>
-                    {% for curent_org in hot_orgs %}
-                        <dl class="des">
-                            <dt class="num fl">{{ foorloop.counter }}</dt>
-                            <dd>
-                                <a href="/company/2/"><h1>{{ curent_org.name }}</h1></a>
-                                <p>{{ curent_org.address }}</p>
-                            </dd>
-                        </dl>
-                    {% endfor %}
-                </div>
+
+            </div>
+
+            <div class="right companyrank layout">
+                <div class="head">授课机构排名</div>
+                {% for curent_org in hot_orgs %}
+                    <dl class="des">
+                        <dt class="num fl">{{ foorloop.counter }}</dt>
+                        <dd>
+                            <a href="{% url "org:org_home" curent_org.id %}"><h1>{{ curent_org.name }}</h1></a>
+                            <p>{{ curent_org.address }}</p>
+                        </dd>
+                    </dl>
+                {% endfor %}
+            </div>
+
+            <div class="right companyright">
+                <div class="head">我要学习</div>
+                <form class="rightform" id="jsStayForm">
+                    <div>
+                        <img src="{% static 'images/rightform1.png' %}"/>
+                        <input type="text" name="name" id="companyName" placeholder="名字" maxlength="25"/>
+                    </div>
+                    <div>
+                        <img src="{% static 'images/rightform2.png' %}"/>
+                        <input type="text" name="mobile" id="companyMobile" placeholder="联系电话"/>
+                    </div>
+                    <div>
+                        <img src="{% static 'images/rightform3.png' %}"/>
+                        <input type="text" name="course_name" id="companyAddress" placeholder="课程名" maxlength="50"/>
+                    </div>
+                    <p class="error company-tips" id="jsCompanyTips"></p>
+                    <input class="btn" type="text" id="jsStayBtn" value="立即咨询 >"/>
+                    {% csrf_token %}
+                </form>
             </div>
         </div>
 

@@ -5,6 +5,15 @@
     公开课视频信息
 {% endblock %}
 
+{% block custom_css %}
+{#    <link rel="stylesheet" type="text/css" href="{% static "css/muke/base.css" %}"/>#}
+    <link rel="stylesheet" type="text/css" href="{% static "css/muke/common-less.css" %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static "css/muke/course/learn-less.css" %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static "css/aui.css" %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static "css/mooc.css" %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static "css/muke/course/common-less.css" %}">
+{% endblock %}
+
 {% block custom_label %}
     <section>
         <div class="wp">
@@ -62,13 +71,15 @@
                                        href="{% url "course:course_comments" course.id %}"><span>评论</span></a></li>
                             </ul>
                         </div>
+
                         <div id="notice" class="clearfix">
-                            <div class="l"><strong>课程公告:</strong> <a
-                                    href="javascript:void(0)">Spring的文档以及相关的jar文件已上传</a>
+                            <div class="l"><strong>课程公告:</strong>
+                                <a href="javascript:void(0)">Spring的文档以及相关的jar文件已上传</a>
                             </div>
                         </div>
 
                         <div class="mod-chapters">
+
 
                             {% for lesson in course.get_course_lesson %}
                                 <div class="chapter chapter-active">
@@ -113,13 +124,10 @@
                             <div class="box mb40">
                                 <h4>讲师提示</h4>
                                 <div class="teacher-info">
-                                    <a href="/u/315464/courses?sort=publish" target="_blank">
+                                    <a href="{% url "org:teacher_detail" course.teacher.id %}" target="_blank">
                                         <img src='{{ MEDIA_URL }}{{ course.teacher.image }}' width='80' height='80'/>
                                     </a>
-                                    <span class="tit">
-                                        <a href="/u/315464/courses?sort=publish"
-                                           target="_blank">{{ course.teacher.name }}</a>
-                                    </span>
+                                    <span class="tit">{{ course.teacher.name }}</span>
                                     <span class="job">{{ course.teacher.work_position }}</span>
                                 </div>
                                 <div class="course-info-tip">
@@ -172,12 +180,5 @@
 {% endblock %}
 
 
-{% block custom_css %}
-    <link rel="stylesheet" type="text/css" href="{% static "css/muke/base.css" %}"/>
-    <link rel="stylesheet" type="text/css" href="{% static "css/muke/common-less.css" %}"/>
-    <link rel="stylesheet" type="text/css" href="{% static "css/muke/course/learn-less.css" %}"/>
-    <link rel="stylesheet" type="text/css" href="{% static "css/aui.css" %}"/>
-    <link rel="stylesheet" type="text/css" href="{% static "css/mooc.css" %}"/>
-    <link rel="stylesheet" type="text/css" href="{% static "css/muke/course/common-less.css" %}">
-{% endblock %}
+
 

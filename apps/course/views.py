@@ -113,8 +113,8 @@ class CourseInfoView(LoginRequiredMixin, View):
         all_user_courses = UserCourse.objects.filter(user_id__in=user_ids)
         # 取出所有课程id
         course_ids = [all_user_course.course_id for all_user_course in all_user_courses]
-        # 通过所有课程的id,找到所有的课程，按点击量去五个
-        relate_courses = Course.objects.filter(id__in=course_ids).order_by("-click_nums")[:5]
+        # 通过所有课程的id,找到所有的课程，按点击量取前3
+        relate_courses = Course.objects.filter(id__in=course_ids).order_by("-click_nums")[:3]
 
         # 资源
         all_resources = CourseResource.objects.filter(course=course)
