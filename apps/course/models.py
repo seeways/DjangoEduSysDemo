@@ -14,12 +14,12 @@ class Course(models.Model):
     desc = models.CharField("课程描述", max_length=300)
     detail = models.TextField("课程详情")
     degree = models.CharField('难度', choices=DEGREE_CHOICES, max_length=2)
-    learn_times = models.IntegerField("学习时长(分钟数)", default=0)
-    students = models.IntegerField("学习人数", default=0)
-    fav_nums = models.IntegerField("收藏人数", default=0)
-    image = models.ImageField("封面图", upload_to="courses/%Y/%m", max_length=100)
-    click_nums = models.IntegerField("点击数", default=0)
-    add_time = models.DateTimeField("添加时间", default=datetime.now, )
+    learn_times = models.IntegerField("学习时长(分钟数)", default=0, blank=True)
+    students = models.IntegerField("学习人数", default=0, blank=True)
+    fav_nums = models.IntegerField("收藏人数", default=0, blank=True)
+    image = models.ImageField("封面图", upload_to="courses/%Y/%m", max_length=100, blank=True)
+    click_nums = models.IntegerField("点击数", default=0, blank=True)
+    add_time = models.DateTimeField("添加时间", default=datetime.now)
 
     category = models.CharField("课程类别", max_length=20, default="")
     tag = models.CharField('课程标签', default='', max_length=10)
@@ -30,8 +30,8 @@ class Course(models.Model):
 
     is_banner = models.BooleanField('是否轮播', default=False)
     # 后台添加字段
-    need_know = models.CharField('课程须知', max_length=300, default='')
-    teacher_tell = models.CharField('老师告诉你', max_length=300, default='')
+    need_know = models.CharField('课程须知', max_length=300, default='', blank=True)
+    teacher_tell = models.CharField('老师告诉你', max_length=300, default='', blank=True)
 
     class Meta:
         verbose_name = "课程"
@@ -56,7 +56,7 @@ class Course(models.Model):
 class Lesson(models.Model):
     course = models.ForeignKey(Course, verbose_name='课程', on_delete=models.CASCADE)
     name = models.CharField("章节名", max_length=100)
-    add_time = models.DateTimeField("添加时间", default=datetime.now)
+    add_time = models.DateTimeField("添加时间", default=datetime.now, blank=True)
 
     class Meta:
         verbose_name = "章节"
@@ -75,8 +75,8 @@ class Video(models.Model):
     name = models.CharField("视频名", max_length=100)
 
     url = models.CharField('访问地址', default='', max_length=200)
-    learn_times = models.IntegerField("学习时长(分钟数)", default=0)
-    add_time = models.DateTimeField("添加时间", default=datetime.now)
+    learn_times = models.IntegerField("学习时长(分钟数)", default=0, blank=True)
+    add_time = models.DateTimeField("添加时间", default=datetime.now, blank=True)
 
     class Meta:
         verbose_name = "视频"

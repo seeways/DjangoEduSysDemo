@@ -14,10 +14,10 @@ class UserProfile(AbstractUser):
 
     nick_name = models.CharField('昵称', max_length=50, default='')
     birthday = models.DateField('生日', null=True, blank=True)
-    gender = models.CharField('性别', max_length=10, choices=gender_choices, default='female')
-    address = models.CharField('地址', max_length=100, default='')
+    gender = models.CharField('性别', max_length=10, choices=gender_choices, default='male')
+    address = models.CharField('地址', max_length=100, default='', blank=True)
     mobile = models.CharField('手机号', max_length=11, null=True, blank=True)
-    image = models.ImageField(upload_to='image/%Y%m', default='image/default.png', max_length=100)
+    image = models.ImageField(upload_to='image/%Y%m', default='image/default.png', max_length=100, blank=True)
 
     class Meta:
         verbose_name = '用户信息'
@@ -46,9 +46,9 @@ class EmailVerifyRecord(models.Model):
 
 class Banner(models.Model):
     title = models.CharField('标题', max_length=100)
-    image = models.ImageField('轮播图', upload_to='banner/%Y%m', max_length=100)
-    url = models.URLField('访问地址', max_length=200)
-    index = models.IntegerField('顺序', default=100)
+    image = models.ImageField('轮播图', upload_to='banner/%Y%m', max_length=100, blank=True)
+    url = models.URLField('访问地址', max_length=200, blank=True)
+    index = models.IntegerField('顺序', default=100, blank=True)
     add_time = models.DateTimeField('添加时间', default=datetime.now)
 
     class Meta:
