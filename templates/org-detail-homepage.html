@@ -45,18 +45,24 @@
                             <img class="pic" src="{{ MEDIA_URL }}{{ teacher.image }}"/>
                         </a></p>
 
-                        <p><a href="{% url "org:teacher_detail" teacher.id %}">
-                            昵称：{{ teacher.name }}
-                        </a></p>
+{#                        <p><a href="{% url "org:teacher_detail" teacher.id %}">#}
+{#                            昵称：{{ teacher.name }}#}
+{#                        </a></p>#}
                     </div>
                     <div class="right">
                         <div class="top">
                             <div class="fl">
-                                <a href=""><h1>java开发教程</h1></a>
-                                <span>发表于：2015-10-12</span>
+                                <a href="{% url "org:teacher_detail" teacher.id %}">
+                                    <h1>{{ teacher.name }}</h1>
+                                </a>
+                                <span>加入时间：{{ teacher.add_time }}</span>
                             </div>
                         </div>
-                        <div class="middle" style="border-bottom:0;">课程介绍</div>
+                        <div class="middle" style="border-bottom:0;">
+                            教学特点
+                            <div>{{ teacher.points }}</div>
+                        </div>
+
                     </div>
                 </div>
             </div>
