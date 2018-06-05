@@ -14,15 +14,13 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 
-from django.views.static import serve
-
-import xadmin
 from django.urls import path, include, re_path
-from django.views.generic import TemplateView
-
+from django.views.static import serve
+import xadmin
 from DjangoEduSysDemo.settings import MEDIA_ROOT
 from DjangoEduSysDemo.settings import STATICFILES_DIRS
-from users.views import LoginView, RegisterView, ActiveUserView, ResetView, ModifyPwdView, ForgetPwdView, LogoutView, IndexView
+from users.views import LoginView, RegisterView, ActiveUserView, ResetView, ModifyPwdView, ForgetPwdView, LogoutView, \
+    IndexView
 
 urlpatterns = [
     path('xadmin/', xadmin.site.urls),

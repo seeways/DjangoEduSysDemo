@@ -43,7 +43,7 @@ class CourseListView(View):
             page = request.GET.get('page', 1)
         except PageNotAnInteger:
             page = 1
-        p = Paginator(all_courses, 5, request=request)
+        p = Paginator(all_courses, 6, request=request)
         courses = p.page(page)
         return render(request, "course-list.html", {
             # 课程分页
