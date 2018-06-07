@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
-    <title>慕学在线注册</title>
+    <title>在线学注册</title>
     <link rel="stylesheet" type="text/css" href="{% static 'css/reset.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
     <!-- 安全验证 -->
@@ -73,11 +73,11 @@
 <header>
     <div class="c-box fff-box">
         <div class="wp header-box">
-            <p class="fl hd-tips">慕学在线，在线学习平台！</p>
+            <p class="fl hd-tips">在线学，在线学习平台！</p>
             <ul class="fr hd-bar">
-                <li>服务电话：<span>4001008031</span></li>
-                <li><a href="login.html">[登录]</a></li>
-                <li class="active"><a href="register.html">[注册]</a></li>
+                <li>QQ：<span>1876665310</span></li>
+                <li><a href="{% url "login" %}">[登录]</a></li>
+                <li class="active"><a href="{% url "register" %}">[注册]</a></li>
             </ul>
         </div>
     </div>
@@ -86,9 +86,9 @@
     <div class="c-box bg-box">
         <div class="login-box clearfix">
             <div class="hd-login clearfix">
-                <a class="index-logo" href="index.html"></a>
+                <a class="index-logo" href="{% url "index" %}"></a>
                 <h1>用户注册</h1>
-                <a class="index-font" href="index.html">回到首页</a>
+                <a class="index-font" href="{% url "index" %}">回到首页</a>
             </div>
             <div class="fl slide">
                 <div class="imgslide">
@@ -143,7 +143,7 @@
                         {% csrf_token %}
                     </form>
                 </div>
-                <p class="form-p">已有账号？<a href="login.html">[立即登录]</a></p>
+                <p class="form-p">已有账号？<a href="{% url "login" %}">[立即登录]</a></p>
             </div>
         </div>
     </div>
